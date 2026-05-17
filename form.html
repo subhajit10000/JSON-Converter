@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style1.css">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+      <h1 >HTML Form to JSON</h1>
+
+
+      <p>
+        Convert user input into JSON format instantly.
+      </p>
+
+
+      <form id="dataForm">
+        <label for="name">
+          Name
+        </label>
+
+
+        <input
+          type="text"
+          id="name"
+          name="name"
+          placeholder="Enter your name"
+         
+        />
+
+
+        <label
+          for="email"
+           >
+          Email
+        </label>
+
+
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="Enter your email"
+         
+        />
+
+
+        <label
+          for="message"
+          style="display: block; margin-bottom: 8px; font-weight: bold"
+        >
+          Message
+        </label>
+
+
+        <textarea
+          id="message"
+          name="message"
+          rows="5"
+          placeholder="Write your message..."
+          
+        ></textarea>
+
+
+        <button
+          type="button"
+          onclick="convertToJson()"
+         
+        >
+          Convert to JSON
+        </button>
+      </form>
+
+      <div
+        id="jsonOutput"
+        
+      ></div>
+    </div>
+    <script>
+      function convertToJson() {
+        let form = document.getElementById("dataForm");
+        let formData = {};
+        for (let i = 0; i < form.elements.length; i++) {
+          let element = form.elements[i];
+
+          if (element.name && element.type !== "button") {
+            formData[element.name] = element.value;
+          }
+        }
+        let jsonData = JSON.stringify(formData, null, 2);
+        let jsonOutput = document.getElementById("jsonOutput");
+
+
+        jsonOutput.innerHTML =
+          "<pre>" +
+          jsonData +
+          "</pre>";
+      }
+    </script>
+  </body>
+</html>
+</html>
