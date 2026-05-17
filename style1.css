@@ -1,0 +1,139 @@
+  /* Reset + base */
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #ee0a0a 0%, #af2f0f 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    color: #333;
+  }
+
+  /* Main container */
+  body > div {
+    background: #dd9494;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    width: 100%;
+    max-width: 500px;
+  }
+
+  h1 {
+    font-size: 28px;
+    margin-bottom: 8px;
+    color: #1a202c;
+    text-align: center;
+  }
+
+  p {
+    text-align: center;
+    color: #718096;
+    margin-bottom: 32px;
+    font-size: 15px;
+  }
+
+  /* Form styling */
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #2d3748;
+    font-size: 14px;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 15px;
+    transition: all 0.2s ease;
+    font-family: inherit;
+  }
+
+  input[type="text"]:focus,
+  input[type="email"]:focus,
+  textarea:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  button {
+    background: linear-gradient(135deg, #f6fa03 0%, #8a9217 100%);
+    color: white;
+    border: none;
+    padding: 14px 24px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    margin-top: 8px;
+  }
+
+  button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+  }
+
+  button:active {
+    transform: translateY(0);
+  }
+
+  /* JSON Output */
+  #jsonOutput {
+    margin-top: 24px;
+    border-radius: 8px;
+    background: #1a202c;
+    color: #e2e8f0;
+    overflow: hidden;
+    display: none; /* Hidden until there's content */
+  }
+
+  #jsonOutput:has(pre) {
+    display: block;
+  }
+
+  #jsonOutput pre {
+    padding: 20px;
+    margin: 0;
+    overflow-x: auto;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 14px;
+    line-height: 1.5;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+  /* Mobile responsive */
+  @media (max-width: 600px) {
+    body > div {
+      padding: 24px;
+    }
+    
+    h1 {
+      font-size: 24px;
+    }
+  }
