@@ -1,5 +1,6 @@
 JSON, which stands for JavaScript Object Notation, is a lightweight data format used to store and exchange information. It was derived from JavaScript in the early 2000s but is now language independent, meaning nearly every modern programming language can read and write it. The core idea behind JSON is to represent data in a way that is both human readable and easy for machines to parse.
 
+
 The structure of JSON is built on two universal data types. The first is a collection of name/value pairs, often called an object, record, dictionary, hash table, or associative array depending on the language. In JSON, an object is wrapped in curly braces { }. Inside, each name is a string in double quotes, followed by a colon, then the value. Multiple pairs are separated by commas. For example: { "name": "Ava", "age": 24, "active": true }.
 
 The second data type is an ordered list of values, called an array in JSON. Arrays use square brackets [ ] and can contain strings, numbers, booleans, objects, other arrays, or null. Commas separate the elements. An example: { "skills": ["Python", "SQL", "Figma"], "scores": }.[95][88][92]
