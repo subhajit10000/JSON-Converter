@@ -72,25 +72,31 @@
       ></div>
     </div>
     <script>
-      function convertToJson() {
-        let form = document.getElementById("dataForm");
-        let formData = {};
-        for (let i = 0; i < form.elements.length; i++) {
-          let element = form.elements[i];
+    function convertToJson() {
+      const form = document.getElementById("dataForm");
+      const formData = {};
 
-          if (element.name && element.type !== "button") {
-            formData[element.name] = element.value;
-          }
+      for (let element of form.elements) {
+        if (!element.name || element.type === "button" || element.type === "submit") continue;
+
+        if (element.type === "checkbox") {
+          formData[element.name] = element.checked ? element.value || true : false;
+        } 
+        else if (element.type === "radio") {
+          if (element.checked) formData[element.name] = element.value;
+        } 
+        else {
+          formData[element.name] = element.value;
         }
-        let jsonData = JSON.stringify(formData, null, 2);
-        let jsonOutput = document.getElementById("jsonOutput");
-
-
-        jsonOutput.innerHTML =
-          "<pre>" +
-          jsonData +
-          "</pre>";
       }
+
+      const jsonData = JSON.stringify(formData, null, 2);
+      const jsonOutput = document.getElementById("jsonOutput");
+      
+      // Safer: use textContent instead of innerHTML to prevent XSS
+      jsonOutput.textContent = jsonData;
+    }
+  </script>
     </script>
   </body>
 </html>
