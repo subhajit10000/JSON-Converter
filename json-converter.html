@@ -76,19 +76,13 @@
       const form = document.getElementById("dataForm");
       const formData = {};
 
-      for (let element of form.elements) {
-        if (!element.name || element.type === "button" || element.type === "submit") continue;
-
-        if (element.type === "checkbox") {
-          formData[element.name] = element.checked ? element.value || true : false;
-        } 
-        else if (element.type === "radio") {
-          if (element.checked) formData[element.name] = element.value;
-        } 
-        else {
-          formData[element.name] = element.value;
-        }
-      }
+      for (const element of form.elements) { const { name, type, value, checked } = element;
+            if (!name || ["button", "submit"].includes(type)) continue;
+                switch (type) { case "checkbox": formData[name] = checked ? (value || true) : false;
+                        break; 
+                    case "radio": if (checked) formData[name] = value;
+                        break; 
+                default: formData[name] = value; } }
 
       const jsonData = JSON.stringify(formData, null, 2);
       const jsonOutput = document.getElementById("jsonOutput");
