@@ -73,23 +73,49 @@
     </div>
     <script>
     function convertToJson() {
-      const form = document.getElementById("dataForm");
-      const formData = {};
+  const form = document.getElementById("dataForm");
+  const formData = {};
 
-      for (const element of form.elements) { const { name, type, value, checked } = element;
-            if (!name || ["button", "submit"].includes(type)) continue;
-                switch (type) { case "checkbox": formData[name] = checked ? (value || true) : false;
-                        break; 
-                    case "radio": if (checked) formData[name] = value;
-                        break; 
-                default: formData[name] = value; } }
+  [...form.elements].forEach((element) => {
+    const { name, type, value, checked, options } = element;
 
-      const jsonData = JSON.stringify(formData, null, 2);
-      const jsonOutput = document.getElementById("jsonOutput");
-      
-      // Safer: use textContent instead of innerHTML to prevent XSS
-      jsonOutput.textContent = jsonData;
+    if (!name || ["button", "submit", "reset"].includes(type)) return;
+
+    switch (type) {
+      case "checkbox":
+        // Handle multiple checkboxes with same name
+        if (form.querySelectorAll(`input[name="${name}"]`).length > 1) {
+          if (!formData[name]) formData[name] = [];
+          if (checked) formData[name].push(value);
+        } else {
+          formData[name] = checked;
+        }
+        break;
+
+      case "radio":
+        if (checked) {
+          formData[name] = value;
+        }
+        break;
+
+      case "select-multiple":
+        formData[name] = [...options]
+          .filter(option => option.selected)
+          .map(option => option.value);
+        break;
+
+      case "number":
+        formData[name] = value === "" ? null : Number(value);
+        break;
+
+      default:
+        formData[name] = value.trim();
     }
+  });
+
+  document.getElementById("jsonOutput").textContent =
+    JSON.stringify(formData, null, 2);
+}
   </script>
     </script>
   </body>
